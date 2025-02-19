@@ -1,7 +1,7 @@
 
 // src/App.js
 import React from 'react';
-import Notes from './Notes';
+// import Notes from './Notes';
 import Note from './Note';
 import './App.css';
 

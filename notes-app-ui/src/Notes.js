@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Notes.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faSave } from '@fortawesome/free-solid-svg-icons';
+import {v4 as uuidv4} from "uuid";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -26,6 +27,7 @@ function Notes() {
         title: newTitle,
         content: newNote,
         date: newDate,
+        id: uuidv4(),
       })
       .then((response) => {
         setNotes([...notes, response.data]);
