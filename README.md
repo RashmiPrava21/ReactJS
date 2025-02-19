@@ -4,4 +4,6 @@
 -- clone the repo to local
 -- git fetch from master
 -- git checkout feature branch
--- npx create-react-app notes-app-ui --template typescript
+-- npx create-react-app notes-app-ui 
+-- React, Axios for HTTP requests, and JSON Server as a simulated backend
+-- install axios
