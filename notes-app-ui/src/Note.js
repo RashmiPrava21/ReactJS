@@ -21,7 +21,7 @@ function Note() {
           Title: newTitle,
           Content: newContent,
           CreatedTime: newDate,
-          Id: uuidv4(),
+          id: uuidv4(),
         })
         .then((response) => {
           setNotes([...notes, response.data]);
