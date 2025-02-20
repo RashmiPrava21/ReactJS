@@ -1,20 +1,24 @@
+// src/App.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./Notes.css";
-import { v4 as uuidv4 } from "uuid";
+// import Notes from './Notes';
+import Note from "./Note";
+import "./App.css";
 import Login from "./Login";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
-function Note() {
+function App() {
   const [notes, setNotes] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [newContent, setNewContent] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [newDate, setNewDate] = useState("");
-  
 
   useEffect(() => {
-    axios.get("http://localhost:5000/notes").then((response) => {
-      setNotes(response.data);
-    });
+    const loggedInStatus = localStorage.getItem("loggedIn");
+    if (loggedInStatus === "true") {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const addNote = () => {
@@ -33,24 +37,19 @@ function Note() {
       });
   };
 
-  const filteredNotes = notes;
-
   return (
-    <div>
-      <h1 style={{ color: "black" }}>Notes</h1>
-      <div className="notes-list">
-        {filteredNotes.map((note) => (
-          <div key={note.ID} className="note">
-            <div className="note-content">
-              <h3>{note.Title}</h3>
-              <p>{note.Content}</p>
-            </div>
-            <div className="note-date">{note.CreatedTime}</div>
-          </div>
-        ))}
-      </div>
+    <div className="App">
+      {/* <Notes /> */}
+      <Note />
+      {!isLoggedIn ? (
+        <Login setIsLoggedIn={setIsLoggedIn} />
+      ) : (
+        <>
+          <button onClick={addNote}>Add</button>
+        </>
+      )}
     </div>
   );
 }
 
-export default Note;
+export default App;
